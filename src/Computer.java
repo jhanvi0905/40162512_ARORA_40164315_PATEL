@@ -3,10 +3,10 @@ import java.util.Objects;
 public class Computer {
     private String brand;
     private String model;
-    private Long SN;
+    private long SN;
     private double price;
-    private static int noOfObjects;
-    public Computer(String p_d, String p_m, Long p_sn, double p_pr){
+    private static int noOfObjects = 0;
+    public Computer(String p_d, String p_m, long p_sn, double p_pr){
         this.brand = p_d;
         this.model = p_m;
         this.SN = p_sn;
@@ -22,11 +22,11 @@ public class Computer {
         return brand;
     }
 
-    public Long getSN() {
+    public long getSN() {
         return SN;
     }
 
-    public void setSN(Long SN) {
+    public void setSN(long SN) {
         this.SN = SN;
     }
 
@@ -71,6 +71,6 @@ public class Computer {
         Computer c2 = new Computer("yz", "za", 15000000001L,34890384);
         Computer c3 = new Computer("xx", "yy",1500000001L, 40000 );
         System.out.println(c1.equals(c3));
-        System.out.println(findNumberOfCreatedComputers());
+        System.out.println(Computer.findNumberOfCreatedComputers());
     }
 }
