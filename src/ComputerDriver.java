@@ -1,9 +1,23 @@
+// -----------------------------------------------------
+// Assignment 1
+// © Jhanvi Arora, Zalakben Rajendrakumar Patel
+// Written by: Jhanvi Arora (40162512), Zalakben Rajendrakumar Patel (40164315)
+// -----------------------------------------------------
 import java.util.Scanner;
 
+/**
+ * Class maintaining Inventory of computer objects
+ */
 public class ComputerDriver {
-
+	/*
+	declared password
+	 */
 	String password = "password";
 
+	/**
+	 * Main menu Function
+	 * @param inventory list of computer objects
+	 */
 	public void mainMenu(Computer[] inventory) {
 		Scanner sc = new Scanner(System.in);
 		int option;
@@ -41,6 +55,10 @@ public class ComputerDriver {
 
 	}
 
+	/**
+	 * validates password
+	 * @return boolean true or false
+	 */
 	public boolean passwordAuthentication() {
 		int NoOfTries = 0;
 		Scanner sc = new Scanner(System.in);
@@ -58,6 +76,10 @@ public class ComputerDriver {
 		return flag == 1;
 	}
 
+	/**
+	 * Adds a new computer in inventory and performs requried validations
+	 * @param inventory computer list
+	 */
 	public void addComputer(Computer[] inventory) {
 		int existingComputers = 0;
 		int count = 1;
@@ -77,7 +99,7 @@ public class ComputerDriver {
 				System.out.println("Enter the Model of the Computer");
 				String l_model = sc.next();
 				System.out.println("Enter the Serial Number of the Computer");
-				Long l_sn = sc.nextLong();
+				long l_sn = sc.nextLong();
 				System.out.println("Enter the Price of the Computer");
 				double l_pr = sc.nextDouble();
 				Computer l_c = new Computer(l_brand, l_model, l_sn, l_pr);
@@ -91,6 +113,10 @@ public class ComputerDriver {
 		}
 	}
 
+	/**
+	 * Updates the specified computer in inventory
+	 * @param inventory computer inventory list
+	 */
 	public void updateComputer(Computer[] inventory) {
 		boolean continueUpdate = true;
 		System.out.println("Enter the computer number in inventory to update");
@@ -118,7 +144,7 @@ public class ComputerDriver {
 					break;
 				case 3:
 					System.out.println("Enter the new Serial Number");
-					Long newSn = sc.nextLong();
+					long newSn = sc.nextLong();
 					inventory[indexToUpdate].setSN(newSn);
 					System.out.println(inventory[indexToUpdate].toString());
 					break;
@@ -145,6 +171,10 @@ public class ComputerDriver {
 		}
 	}
 
+	/**
+	 * Finds all computer in inventory of a specific brand
+	 * @param inventory inventory list of computer objects
+	 */
 	public void findComputersWithBrand(Computer[] inventory) {
 		Scanner st = new Scanner(System.in);
 		System.out.println("Enter a brand name to find matching computers.");
@@ -152,14 +182,23 @@ public class ComputerDriver {
 		ComputerDriver.findComputersBy(brandName, inventory);
 	}
 
+	/**
+	 * Helper function of searching computers by brand
+	 * @param brandName Brand Name to search computers of
+	 * @param inventory inventory computer list
+	 */
 	public static void findComputersBy(String brandName, Computer[] inventory) {
-		for (int i = 0; i < inventory.length; i++) {
-			if (inventory[i] != null && inventory[i].getBrand().equalsIgnoreCase(brandName)) {
-				System.out.println(inventory[i]);
+		for (Computer computer : inventory) {
+			if (computer != null && computer.getBrand().equalsIgnoreCase(brandName)) {
+				System.out.println(computer);
 			}
 		}
 	}
 
+	/**
+	 * Finds the computer with lower price than specified price
+	 * @param inventory computer list
+	 */
 	public void findComputersWithLowerPrice(Computer[] inventory) {
 		Scanner st = new Scanner(System.in);
 		System.out.println("Enter price to find suitable computers having smaller price than entered one.");
@@ -167,10 +206,15 @@ public class ComputerDriver {
 		ComputerDriver.findCheaperThan(price, inventory);
 	}
 
+	/**
+	 * Helper function to find lower priced computers
+	 * @param price price to check against
+	 * @param inventory computer list
+	 */
 	public static void findCheaperThan(double price, Computer[] inventory) {
-		for (int i = 0; i < inventory.length; i++) {
-			if (inventory[i] != null && inventory[i].getPrice() < price) {
-				System.out.println(inventory[i]);
+		for (Computer computer : inventory) {
+			if (computer != null && computer.getPrice() < price) {
+				System.out.println(computer);
 			}
 		}
 	}
